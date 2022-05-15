@@ -1,4 +1,3 @@
-
 set CMAKE_CONFIG="Release"
 
 cd %SRC_DIR%\sources\shiboken2
@@ -19,4 +18,4 @@ if errorlevel 1 exit 1
 
 cd %SRC_DIR%
 "%PYTHON%" setup.py dist_info --build-type=shiboken2
-ROBOCOPY shiboken2-5.15.3.dist-info "%SP_DIR%\shiboken2.dist-info /e
+ROBOCOPY /e shiboken2-5.15.3.dist-info "%SP_DIR%\shiboken2-5.15.3.dist-info
