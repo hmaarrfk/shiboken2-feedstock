@@ -1,0 +1,57 @@
+{% set version = "5.15.3" %}
+
+package:
+  name: pyside2
+  version: {{ version }}
+
+source:
+  fn: pyside-setup-everywhere-src-{{ version }}.tar.xz
+  url: https://download.qt.io/official_releases/QtForPython/pyside2/PySide2-{{ version }}-src/pyside-setup-opensource-src-{{ version }}.tar.xz
+  sha256: 7ff5f1cc4291fffb6d5a3098b3090abe4d415da2adec740b4e901893d95d7137
+  patches:
+    - patches/python3.10.patch
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - clangdev
+    - make                               # [not win]
+    - ninja                              # [win]
+    - gxx                                # [linux]
+  host:
+    - python
+    - packaging
+    - qt-main
+    # - qt-webengine
+    # - libxml2
+    # - libxslt
+    # - pip
+    # - setuptools
+    # - libclang
+  run:
+    - python
+
+test:
+  requires:
+    - pip
+  imports:
+    - shiboken2
+  commands:
+    - shiboken2 --help
+    - pip show shiboken2
+
+about:
+  home: https://wiki.qt.io/PySide2
+  license:  LGPL-3.0-only
+  license_file: LICENSE.LGPLv3
+  summary: Python bindings for Qt
+
+extra:
+  recipe-maintainers:
+    - hmaarrfk
