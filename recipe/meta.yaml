@@ -26,13 +26,13 @@ requirements:
     - gxx                                # [linux]
   host:
     - python
+    - pip
+    - setuptools
     - packaging
     - qt-main
+    - libxslt
     # - qt-webengine
     # - libxml2
-    # - libxslt
-    # - pip
-    # - setuptools
     # - libclang
   run:
     - python
