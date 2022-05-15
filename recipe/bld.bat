@@ -18,5 +18,4 @@ if errorlevel 1 exit 1
 
 cd %SRC_DIR%
 "%PYTHON%" setup.py dist_info --build-type=shiboken2
-dir
-mv shiboken2-5.15.3.dist-info "%SP_DIR%\shiboken2-5.15.3.dist-info
+ROBOCOPY /e shiboken2-5.15.3.dist-info %SP_DIR%\shiboken2-5.15.3.dist-info
