@@ -21,9 +21,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - clangdev
-    - make                               # [not win]
-    - ninja                              # [win]
-    - gxx                                # [linux]
+    - qt-main         # [build_platform != target_platform]
+    - make            # [not win]
+    - ninja           # [win]
+    - gxx             # [linux]
   host:
     - python
     - pip
