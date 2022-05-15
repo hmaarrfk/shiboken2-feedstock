@@ -31,9 +31,9 @@ requirements:
     - packaging
     - qt-main
     - libxslt
+    - libclang
     # - qt-webengine
     # - libxml2
-    # - libclang
   run:
     - python
 
