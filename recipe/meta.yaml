@@ -1,7 +1,7 @@
 {% set version = "5.15.3" %}
 
 package:
-  name: pyside2
+  name: shiboken2
   version: {{ version }}
 
 source:
