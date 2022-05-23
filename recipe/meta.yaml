@@ -1,4 +1,4 @@
-{% set version = "5.15.3" %}
+{% set version = "5.15.4" %}
 
 package:
   name: shiboken2
@@ -7,7 +7,7 @@ package:
 source:
   fn: pyside-setup-everywhere-src-{{ version }}.tar.xz
   url: https://download.qt.io/official_releases/QtForPython/pyside2/PySide2-{{ version }}-src/pyside-setup-opensource-src-{{ version }}.tar.xz
-  sha256: 7ff5f1cc4291fffb6d5a3098b3090abe4d415da2adec740b4e901893d95d7137
+  sha256: 3c68ed0def4111ef5d0641370306338d277ae8983a77eaf22f223ddd3a14450b
   patches:
     - patches/python3.10.patch
 
