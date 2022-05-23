@@ -18,4 +18,4 @@ if errorlevel 1 exit 1
 
 cd %SRC_DIR%
 "%PYTHON%" setup.py dist_info --build-type=shiboken2
-move shiboken2-5.15.3.dist-info "%SP_DIR%"\shiboken2-5.15.3.dist-info
+move shiboken2-%PKG_VERSION%.dist-info "%SP_DIR%"\shiboken2-5.15.3.dist-info
