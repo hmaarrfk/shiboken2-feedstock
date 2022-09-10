@@ -1,35 +1,25 @@
-{% set version = "5.15.5" %}
+{% set version = "5.15.6" %}
 
 package:
-  name: pyside2
+  name: shiboken2
   version: {{ version }}
 
 source:
   url: https://download.qt.io/official_releases/QtForPython/pyside2/PySide2-{{ version }}-src/pyside-setup-opensource-src-{{ version }}.tar.xz
-  sha256: 3920a4fb353300260c9bc46ff70f1fb975c5e7efa22e9d51222588928ce19b33
+  sha265: 171ee058d056599b8e9e8605fe3dae5dabdab7764285b21b28f64760a0f6779d
   patches:
     # https://bugreports.qt.io/browse/PYSIDE-1193
-    - patches/pyi.patch
-    - patches/python3.10.patch
-    - patches/windows_dll_shiboken_fix.patch
-    - patches/fix_genererate_pyi.patch  # [win]
-    - patches/pyside2-tools-obsolete.patch
-    - patches/cross_compile_pyi.patch  # [build_platform != target_platform]
+    - pyi.patch
 
 build:
   number: 1
   detect_binary_files_with_prefix: true
-  entry_points:
-    - pyside2-designer = PySide2.scripts.pyside_tool:designer
-    - pyside2-rcc = PySide2.scripts.pyside_tool:rcc
-    - pyside2-uic = PySide2.scripts.pyside_tool:uic
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - pyside2 =5.15.4                        # [build_platform != target_platform]
-    - qt-main                                # [build_platform != target_platform]
+    # - qt-main                                # [build_platform != target_platform]
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -65,12 +55,10 @@ requirements:
     - make                               # [not win]
     - ninja                              # [win]
     - gxx                                # [linux]
-
   host:
     - python
     - packaging
     - qt-main
-    - qt-webengine
     - libxml2
     - libxslt
     - pip
@@ -78,60 +66,16 @@ requirements:
     - libclang
   run:
     - python
+  run_constrained:
+    - pyside2 {{ version }}
 
 test:
-  imports:
-    - PySide2.QtCharts
-    - PySide2.QtConcurrent
-    - PySide2.QtCore
-    - PySide2.QtDataVisualization
-    - PySide2.QtGui
-    - PySide2.QtHelp
-    - PySide2.QtLocation
-    - PySide2.QtMultimedia
-    - PySide2.QtMultimediaWidgets
-    - PySide2.QtNetwork
-    - PySide2.QtOpenGL
-    - PySide2.QtPositioning
-    - PySide2.QtPrintSupport
-    - PySide2.QtQml
-    - PySide2.QtQuick
-    - PySide2.QtQuickWidgets
-    - PySide2.QtRemoteObjects
-    - PySide2.QtScript
-    - PySide2.QtScriptTools
-    - PySide2.QtScxml
-    - PySide2.QtSensors
-    - PySide2.QtSql
-    - PySide2.QtSvg
-    - PySide2.QtTest
-    - PySide2.QtTextToSpeech
-    - PySide2.QtUiTools
-    - PySide2.QtWebChannel
-    - PySide2.QtWebEngineCore
-    - PySide2.QtWebEngineWidgets
-    - PySide2.QtWebSockets
-    - PySide2.QtWidgets
-    - PySide2.QtXml
-    - PySide2.QtXmlPatterns
-    - PySide2.Qt3DAnimation
-    - PySide2.Qt3DCore
-    - PySide2.Qt3DExtras
-    - PySide2.Qt3DInput
-    - PySide2.Qt3DLogic
-    - PySide2.Qt3DRender
-
-  commands:
-    - shiboken2 --help
-    - pyside2-lupdate -help
-    - pyside2-rcc -help
-    - pyside2-uic -help
-    # Ensure installs are registered properly with pip
-    - pip show PySide2
-    - pip show shiboken2
-
   requires:
     - pip
+  commands:
+    - shiboken2 --help
+    - pip show shiboken2
+    - pip check
 
 about:
   home: https://wiki.qt.io/PySide2
