@@ -1,0 +1,4 @@
+channel_targets:
+  - mark.harfouche main
+channel_sources:
+  - mark.harfouche,conda-forge
