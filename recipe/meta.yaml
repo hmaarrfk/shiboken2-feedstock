@@ -25,6 +25,11 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     # - qt-main                                # [build_platform != target_platform]
+    # Only Pyside6.3 has cross compilation truely enabled
+    # https://codereview.qt-project.org/c/pyside/pyside-setup/+/374068/144
+    # Eventually, they need to use the shiboken command to make
+    # the final shiboken pacakge....
+    - shiboken2 {{ version }}                # [build_platform != target_platform]
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
