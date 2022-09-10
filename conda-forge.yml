@@ -8,3 +8,10 @@ github:
 provider:
   linux_aarch64: azure
 test: native_and_emulated
+github:
+  user_or_org: hmaarrfk
+channels:
+  targets:
+  -
+    - mark.harfouche
+
