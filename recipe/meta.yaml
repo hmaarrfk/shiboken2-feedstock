@@ -9,7 +9,12 @@ source:
   sha256: 171ee058d056599b8e9e8605fe3dae5dabdab7764285b21b28f64760a0f6779d
   patches:
     # https://bugreports.qt.io/browse/PYSIDE-1193
-    - pyi.patch
+    - patches/pyi.patch
+    - patches/python3.10.patch
+    - patches/windows_dll_shiboken_fix.patch
+    - patches/fix_genererate_pyi.patch  # [win]
+    - patches/pyside2-tools-obsolete.patch
+    - patches/cross_compile_pyi.patch  # [build_platform != target_platform]
 
 build:
   number: 1
